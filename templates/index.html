@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex Function Mapping</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+        }
+        .plot {
+            margin-top: 20px;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complex Function Mapping</h1>
+        <form method="post">
+            <label for="function_input">Enter a complex function of z:</label>
+            <input type="text" id="function_input" name="function_input" placeholder="e.g., sin(z) or z^2" required>
+            <button type="submit">Plot</button>
+        </form>
+    </div>
+
+    {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+    {% endif %}
+
+    {% if plot_path %}
+        <div class="plot">
+            <h2>Mapping Result</h2>
+            <img src="{{ url_for('static', filename='plot.png') }}" alt="Complex function mapping">
+        </div>
+    {% endif %}
+
+</body>
+</html>
