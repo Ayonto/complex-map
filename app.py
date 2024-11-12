@@ -18,6 +18,10 @@ def default_function(z):
 def process_function_input(function_str):
     # replacing ^ with ** 
     function_str = function_str.replace('^', '**')
+    
+    function_str = re.sub(r'(?<!\w)i(?!\w)', '1j', function_str) 
+    function_str = function_str.replace(' ', '')
+    # print(function_str)
 
     # replacements for common functions
     replacements = {
