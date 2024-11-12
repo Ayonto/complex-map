@@ -1,5 +1,4 @@
 {
-    "version": 2,
     "builds": [
       {
         "src": "app.py",
@@ -9,10 +8,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "app.py",
-        "headers": {
-          "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0"
-        }
+        "dest": "app.py"
       }
     ]
   }
