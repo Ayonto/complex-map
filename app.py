@@ -16,14 +16,13 @@ def default_function(z):
 
 #convert the user function input valid funciton 
 def process_function_input(function_str):
-    # replacing ^ with ** 
+
     function_str = function_str.replace('^', '**')
     
     function_str = re.sub(r'(?<!\w)i(?!\w)', '1j', function_str) 
     function_str = function_str.replace(' ', '')
     # print(function_str)
 
-    # replacements for common functions
     replacements = {
         'sin': 'np.sin',
         'cos': 'np.cos',
@@ -34,7 +33,7 @@ def process_function_input(function_str):
         'abs': 'np.abs'
     }
 
-    # replacing functions with numpy 
+
     for key, value in replacements.items():
         function_str = re.sub(rf'\b{key}\b', value, function_str)
 
@@ -54,7 +53,7 @@ def evaluate_function(z, function_str):
 
 # generate the plot
 def generate_plot(function_str):
-    # grid in the z-plane
+    # grids in the z-plane
     x_min, x_max, x_points = -2, 2, 10
     y_min, y_max, y_points = -2, 2, 10
 
@@ -66,7 +65,7 @@ def generate_plot(function_str):
     X, Y = np.meshgrid(x, y)  
     # print(X)
     
-    Z = X + 1j * Y  # combine into complex grid
+    Z = X + 1j * Y  
 
     W = evaluate_function(Z, function_str)
     # print(type(W))
@@ -129,7 +128,6 @@ def index():
     now = int(time.time())
 
     if request.method == 'POST':
-
         function_str = request.form.get('function_input', 'sin(z)')
     
     plot_path = generate_plot(function_str)
