@@ -42,7 +42,7 @@ def evaluate_function(z, function_str):
        
         w = eval(function_str, {"z": z, "np": np})
     except Exception as e:
-        print(f"Error in function evaluation: {e}")
+        # print(f"Error in function evaluation: {e}")
         w = None  
     return w
 
@@ -53,12 +53,12 @@ def generate_plot(function_str):
     y_min, y_max, y_points = -2, 2, 10
 
     x = np.linspace(x_min, x_max, x_points)
-    print(x.shape)
-    print(x)
+    # print(x.shape)
+    # print(x)
     y = np.linspace(y_min, y_max, y_points)
-    print(y)
+    # print(y)
     X, Y = np.meshgrid(x, y)  
-    print(X)
+    # print(X)
     
     Z = X + 1j * Y  # combine into complex grid
 
@@ -120,4 +120,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run()
