@@ -1,42 +1,81 @@
+
 body {
     font-family: "Montserrat", sans-serif;
     text-align: center;
-}
-.container {
-    width: 50%;
-    margin: auto;
+    overflow-x: hidden;
 }
 
+.container {
+    width: 80%;  
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 10px;
+    align-content: center;
+}
+
+/* .input-field, .function-label, .plot-btn {
+    font-size: 1em; 
+} */
+
 .input-field {
-    font-size: 20px;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .function-label { 
     font-size: 20px;
+    margin: 10px;
 }
 
-.plot-btn {
+
+.plot-btn { 
     font-size: 20px;
     padding: 2px;
     padding-left: 8px;
     padding-right: 8px;
+
+    margin: 10px;
     border: none;
     background-color: #97776c;
     color: white;
+
+    border-radius: 2.5px;
+}
+
+.plot img {
+    max-width: 100%; 
+    height: auto;    
+    margin: 0 auto;
+}
+
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffd5d5;
+    border-radius: 5px;
+    margin: 10px auto;
+    max-width: 80%;
+}
+
+
+.cpright {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 0.9em;
 }
 
 button:hover {
     background-color: gray;
 }
 
-.plot {
-    margin-top: 20px;
-}
-.error-message {
-    color: red;
-    font-weight: bold;
-}
 
-.cpright { 
-    font-weight: bold;
-}

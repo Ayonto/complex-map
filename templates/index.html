@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=1024"> -->
     <title>Complex Function Mapping</title>
-    <link rel="stylesheet" href="/static/style.css?v=1.0.0">
+    <link rel="stylesheet" href="/static/style.css?v=1.3.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +13,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Complex Function z-w plane Mapping</h1>
+        <h1>Complex Function z-w Plane Mapping</h1>
         <form method="post">
-            <label class="function-label"for="function_input">Enter a complex function of z:</label>
+            <label class="function-label"for="function_input">Enter a complex function of z :</label>
             <input 
                 type="text" 
                 class = "input-field"
@@ -23,7 +24,7 @@
                 placeholder="e.g., sin(z) , z^2, exp(z)" 
                 value="{{ function_str | default('sin(z)') }}" 
                 required>
-            <button class = "plot-btn" type="submit">MAP</button>
+            <button class = "plot-btn" type="submit">Map</button>
         </form>
     </div>
 
