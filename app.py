@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import re  
 import os
 import tempfile
+import time
 
 app = Flask(__name__)
 
@@ -121,6 +122,8 @@ def index():
     error_message = None
     function_str = "sin(z)"  # default function
 
+    now = int(time.time())
+
     if request.method == 'POST':
 
         function_str = request.form.get('function_input', 'sin(z)')
@@ -131,7 +134,7 @@ def index():
     if plot_path is None:
         error_message = "The function might be incorrect. Please check the syntax and try again."
 
-    return render_template('index.html', plot_path=plot_path, error_message=error_message, function_str=function_str)
+    return render_template('index.html', plot_path=plot_path, error_message=error_message, function_str=function_str, now=now)
 
 @app.route('/plot.png')
 def plot():
