@@ -32,11 +32,12 @@
     {% endif %}
 
     {% if plot_path %}
-        <div class="plot">
-            <h2>Mapping Result</h2>
-            <img src="{{ url_for('static', filename='plot.png') }}" alt="Complex function mapping">
-        </div>
+    <div class="plot">
+        <h2>Mapping Result for f(z) = {{ function_str }}</h2>
+        <img src="/plot.png" alt="Complex function mapping">
+    </div>
     {% endif %}
+
 
 
     <hr>  

@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
 import re  
 import os
+import tempfile
 
 app = Flask(__name__)
 
@@ -92,33 +93,55 @@ def generate_plot(function_str):
         ax2.plot(W.real[:,i], W.imag[:, i], 'r-', lw=0.5)  # mapped vertical lines
 
 
-    plot_path = "static/plot.png"
-    plt.tight_layout(rect=[0, 0, 1, 0.96])
-    plt.savefig(plot_path)
-    plt.close(fig)  
+    # plot_path = "static/plot.png"
+    # plt.tight_layout(rect=[0, 0, 1, 0.96])
+    # plt.savefig(plot_path)
+    # plt.close(fig)  
 
+    # plot_path = "/tmp/plot.png"
+    # plt.savefig(plot_path)
+    # plt.close(fig)
+    # return plot_path
+    temp_dir = tempfile.gettempdir()
+    plot_path = os.path.join(temp_dir, "plot.png")
+    plt.savefig(plot_path)
+    plt.close(fig)
     return plot_path
 
+
+from flask import Flask, render_template, request, send_file
+import tempfile
+import os
+
+app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     plot_path = None
     error_message = None
-
-
-    function_str = "sin(z)"  # default function 
+    function_str = "sin(z)"  # default function
 
     if request.method == 'POST':
-        function_str = request.form.get('function_input', 'sin(z)')
 
+        function_str = request.form.get('function_input', 'sin(z)')
+    
     plot_path = generate_plot(function_str)
+
 
     if plot_path is None:
         error_message = "The function might be incorrect. Please check the syntax and try again."
 
     return render_template('index.html', plot_path=plot_path, error_message=error_message, function_str=function_str)
 
+@app.route('/plot.png')
+def plot():
+
+    temp_dir = tempfile.gettempdir()
+    plot_path = os.path.join(temp_dir, "plot.png")
+    return send_file(plot_path, mimetype='image/png')
+
+
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    # app.run()
