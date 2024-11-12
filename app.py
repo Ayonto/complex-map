@@ -104,16 +104,20 @@ def generate_plot(function_str):
 def index():
     plot_path = None
     error_message = None
+
+
+    function_str = "sin(z)"  # default function 
+
     if request.method == 'POST':
+        function_str = request.form.get('function_input', 'sin(z)')
 
-        function_str = request.form.get('function_input', 'z^2')
-        plot_path = generate_plot(function_str)
-        
+    plot_path = generate_plot(function_str)
 
-        if plot_path is None:
-            error_message = "The function might be incorrect. Please check the syntax and try again."
+    if plot_path is None:
+        error_message = "The function might be incorrect. Please check the syntax and try again."
 
-    return render_template('index.html', plot_path=plot_path, error_message=error_message)
+    return render_template('index.html', plot_path=plot_path, error_message=error_message, function_str=function_str)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

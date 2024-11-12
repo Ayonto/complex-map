@@ -1,0 +1,42 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+}
+.container {
+    width: 50%;
+    margin: auto;
+}
+
+.input-field {
+    font-size: 20px;
+}
+
+.function-label { 
+    font-size: 20px;
+}
+
+.plot-btn {
+    font-size: 20px;
+    padding: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: none;
+    background-color: #97776c;
+    color: white;
+}
+
+button:hover {
+    background-color: gray;
+}
+
+.plot {
+    margin-top: 20px;
+}
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.cpright { 
+    font-weight: bold;
+}
