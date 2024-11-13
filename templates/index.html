@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <meta name="viewport" content="width=1024"> -->
     <title>Complex Function Mapping</title>
-    <link rel="stylesheet" href="/static/style.css?v=1.3.0">
+    <link rel="stylesheet" href="/static/style.css?v=1.5.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
                 placeholder="e.g., sin(z) , z^2, exp(z)" 
                 value="{{ function_str | default('sin(z)') }}" 
                 required>
-            <button class = "plot-btn" type="submit">Map</button>
+            <button class = "plot-btn" id="map-btn" type="submit">Map</button>
         </form>
     </div>
 
@@ -34,16 +34,41 @@
 
     {% if plot_path %}
     <div class="plot">
-        <!-- <h2>Mapping Result for f(z) = {{ function_str }}</h2> -->
         <h2>Mapping Result</h2>
         <img src="/plot.png?{{ now | int }}" alt="Complex function mapping">
     </div>
     {% endif %}
 
 
+    <footer>
 
-    <hr>  
-    <p class = "cpright">© s.i.ayonto</p>
+        <hr> 
+        <div> 
+            <a href = "https://github.com/Ayonto/complex-map" alt = "github" target="_blank">
+                <ion-icon name="logo-github"></ion-icon>
+            </a>
+            <a href = "https://x.com/_S_I_Ayonto" alt = "twitter" target="_blank">
+                <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href = "https://www.linkedin.com/in/s-i-ayonto/" alt = "linkedin" target="_blank">
+                <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
 
+            <div>
+                <p class = "cpright">© s.i.ayonto</p>
+            </div>
+        </div>
+        
+    </footer>
+
+    <script>
+        document.getElementById("map-btn").addEventListener("keydown", function(event) {
+          if (event.keyCode === 13) {
+            document.getElementById("map-btn").click();
+          }
+        });
+      </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
