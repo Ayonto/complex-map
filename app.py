@@ -11,8 +11,8 @@ import time
 app = Flask(__name__)
 
 
-def default_function(z):
-    return z**2
+# def default_function(z):
+#     return z**2
 
 #convert the user function input valid funciton 
 def process_function_input(function_str):
@@ -30,7 +30,8 @@ def process_function_input(function_str):
         'exp': 'np.exp',
         'log': 'np.log',
         'sqrt': 'np.sqrt',
-        'abs': 'np.abs'
+        'abs': 'np.abs',
+        'z_bar': 'np.conj(z)'
     }
 
 
@@ -43,9 +44,9 @@ def process_function_input(function_str):
 def evaluate_function(z, function_str):
     try:
 
-        function_str = process_function_input(function_str)
-       
+        function_str = process_function_input(function_str)       
         w = eval(function_str, {"z": z, "np": np})
+        # print(w)
     except Exception as e:
         # print(f"Error in function evaluation: {e}")
         w = None  
