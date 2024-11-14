@@ -1,4 +1,3 @@
-
 # Complex-Map
 
 The program demonstrates Complex function mapping of the grids of Z-plane into W-plnae 
