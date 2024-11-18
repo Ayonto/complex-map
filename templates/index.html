@@ -5,28 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <meta name="viewport" content="width=1024"> -->
     <title>Complex Function Mapping</title>
-    <link rel="stylesheet" href="/static/style.css?v=1.5.0">
+    <link rel="stylesheet" href="/static/style.css?v=1.8.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Comfortaa:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div class="container">
-        <h1>Complex Function z-w Plane Mapping</h1>
+        <h1>Complex Function z-w plane Mapping</h1>
         <form method="post">
-            <label class="function-label"for="function_input">Enter a complex function of z :</label>
+            <label class="function-label" for="function_input">Enter a complex function of z:</label>
             <input 
                 type="text" 
-                class = "input-field"
+                class="input-field"
                 id="function_input" 
                 name="function_input" 
                 placeholder="e.g., sin(z) , z^2, exp(z)" 
-                value="{{ function_str | default('sin(z)') }}" 
+                value="{{ function_str }}" 
                 required>
-            <button class = "plot-btn" id="map-btn" type="submit">Map</button>
+            <button class="plot-btn" type="submit">MAP</button>
+            
+            <h2>Adjust Plot Range and Resolution</h2>
+            
+
+            <div class="sliders-container">
+
+                <div class="slider-group">
+                    <label for="x_min">X-Min</label>
+                    <input type="range" id="x_min" name="x_min" min="-10" max="0" value="{{ x_min }}" step="1">
+                    <span id="x_min_value">{{ x_min }}</span>
+                </div>
+    
+                <div class="slider-group">
+                    <label for="x_max">X-Max</label>
+                    <input type="range" id="x_max" name="x_max" min="0" max="10" value="{{ x_max }}" step="1">
+                    <span id="x_max_value">{{ x_max }}</span>
+                </div>
+    
+                <div class="slider-group">
+                    <label for="x_points">X-Steps</label>
+                    <input type="range" id="x_points" name="x_points" min="5" max="100" value="{{ x_points }}" step="1">
+                    <span id="x_points_value">{{ x_points }}</span>
+                </div>
+
+
+                <div class="slider-group">
+                    <label for="y_min">Y-Min</label>
+                    <input type="range" id="y_min" name="y_min" min="-10" max="0" value="{{ y_min }}" step="1">
+                    <span id="y_min_value">{{ y_min }}</span>
+                </div>
+    
+                <div class="slider-group">
+                    <label for="y_max">Y-Max</label>
+                    <input type="range" id="y_max" name="y_max" min="0" max="10" value="{{ y_max }}" step="1">
+                    <span id="y_max_value">{{ y_max }}</span>
+                </div>
+    
+                <div class="slider-group">
+                    <label for="y_points">Y-Steps</label>
+                    <input type="range" id="y_points" name="y_points" min="5" max="100" value="{{ y_points }}" step="1">
+                    <span id="y_points_value">{{ y_points }}</span>
+                </div>
+            </div>
         </form>
     </div>
+    
+
 
     {% if error_message %}
         <div class="error-message">{{ error_message }}</div>
@@ -38,6 +84,27 @@
         <img src="/plot.png?{{ now | int }}" alt="Complex function mapping">
     </div>
     {% endif %}
+
+    <hr> 
+
+    <div class="instructions">
+        <h2>Instructions</h2>
+        <ul>
+            <li>Use standard math functions like <code>sin(z)</code>, <code>cos(z)</code>, <code>tan(z)</code>, <code>exp(z)</code>, <code>log(z)</code>, and <code>sqrt(z)</code> for input.</li>
+            <li>For powers, use <code>^ </code>(e.g., <code>z^2</code>, <code>z^z</code>).</li>
+            <li>Type <code>z_bar</code> for the conjugate of z</li>
+
+            <li>Quadratic function: <code>z^2</code></li>
+            <li>Exponential function: <code>exp(z)</code></li>
+            <li>Trigonometric function: <code>sin(z) + cos(z)</code></li>
+            <li>Logarithmic function: <code>log(z)</code></li>
+
+            <li>Adjust the sliders to change the range of real and imaginary parts in the z-plane.</li>
+            <li>Use <strong>X-axis Steps</strong> and <strong>Y-axis Steps</strong> to control grid density for more or fewer lines.</li>
+            <li>Ensure the function syntax is correct to avoid errors while generating the plot.</li>
+            <li>Increasing the number of steps provides smoother plots but may take longer to compute.</li>
+        </ul>
+    </div>
 
 
     <footer>
@@ -67,7 +134,42 @@
             document.getElementById("map-btn").click();
           }
         });
-      </script>
+        
+    </script>
+     <script>
+
+        function updateSliderValues() {
+
+            document.getElementById("x_min_value").textContent = document.getElementById("x_min").value;
+            document.getElementById("x_max_value").textContent = document.getElementById("x_max").value;
+            document.getElementById("y_min_value").textContent = document.getElementById("y_min").value;
+            document.getElementById("y_max_value").textContent = document.getElementById("y_max").value;
+            document.getElementById("x_points_value").textContent = document.getElementById("x_points").value;
+            document.getElementById("y_points_value").textContent = document.getElementById("y_points").value;
+        }
+        document.getElementById("x_min").addEventListener("input", function() {
+            document.getElementById("x_min_value").textContent = this.value;
+        });
+        document.getElementById("x_max").addEventListener("input", function() {
+            document.getElementById("x_max_value").textContent = this.value;
+        });
+        document.getElementById("y_min").addEventListener("input", function() {
+            document.getElementById("y_min_value").textContent = this.value;
+        });
+        document.getElementById("y_max").addEventListener("input", function() {
+            document.getElementById("y_max_value").textContent = this.value;
+        });
+        document.getElementById("x_points").addEventListener("input", function() {
+            document.getElementById("x_points_value").textContent = this.value;
+        });
+        document.getElementById("y_points").addEventListener("input", function() {
+            document.getElementById("y_points_value").textContent = this.value;
+        });
+
+
+        window.onload = updateSliderValues;
+    </script>
+    
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
